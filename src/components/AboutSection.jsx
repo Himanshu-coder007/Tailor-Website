@@ -12,13 +12,13 @@ const AboutSection = () => {
             <div className="relative">
               <img
                 src={about1}
-                alt="Tailored suit"
+                alt="Elegant tailored suit displayed on a mannequin"
                 className="w-full max-w-[500px] object-cover rounded-lg shadow-lg"
                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/420x500/ccc/000?text=Image+Missing'; }}
               />
               <img
                 src={about2}
-                alt="Tailor working"
+                alt="Skilled tailor measuring fabric with precision"
                 className="absolute -bottom-8 left-56 w-60 h-72 border-4 border-white rounded-lg shadow-xl object-cover hidden md:block"
                 onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/240x300/aaa/000?text=Image+Missing'; }}
               />
@@ -29,16 +29,16 @@ const AboutSection = () => {
           <div className="w-full lg:w-1/2 flex items-center">
             <div className="py-12 lg:py-0 pl-0 lg:pl-8">
               <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                About our <br /> tailor house
+                Crafting Excellence <br /> Since 1985
               </h2>
               <p className="text-gray-800 text-lg mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
+                At our tailor house, we blend traditional craftsmanship with contemporary style to create garments that stand the test of time. Each piece is meticulously constructed by our master tailors with decades of experience.
               </p>
               <p className="text-gray-800 text-lg mb-8">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.
+                We source only the finest fabrics from around the world and pay extraordinary attention to every detail, from the initial measurements to the final fitting. Our commitment to quality ensures you receive clothing that fits perfectly and reflects your personal style.
               </p>
               <button className="bg-[#caa892] hover:bg-[#b98a75] text-white px-8 py-3 rounded transition duration-300 text-lg font-semibold">
-                MORE ABOUT US
+                OUR STORY
               </button>
             </div>
           </div>

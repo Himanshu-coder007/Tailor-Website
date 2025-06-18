@@ -30,25 +30,25 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/"
+              to="/about"
               className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
             >
               About
             </Link>
             <Link
-              to="/"
+              to="/services"
               className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
             >
               Services
             </Link>
             <Link
-              to="/"
+              to="/blog"
               className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
             >
               Blog
             </Link>
             <Link
-              to="/"
+              to="/contact"
               className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
             >
               Contact

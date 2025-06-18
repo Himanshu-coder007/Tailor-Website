@@ -21,16 +21,17 @@ const FooterSection = () => {
           {/* Brand and Contact Info */}
           <div className="space-y-6 md:w-1/2">
             <div>
-              <h2 className="text-4xl font-bold text-orange-400 mb-2">Tailor.</h2>
+              <h2 className="text-4xl font-bold text-orange-400 mb-2">Tailor House</h2>
               <p className="text-gray-300">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Praesent volutpat justo ut ipsum iaculis blandit.
+                Crafting bespoke garments with precision and care since 1985. 
+                We specialize in custom tailoring that celebrates individuality 
+                and timeless elegance.
               </p>
             </div>
 
             <div>
-              <p className="text-xl text-orange-300 font-semibold mb-1">(80) 783 367-3904</p>
-              <p className="text-gray-400 text-sm">(80) 783 367-3904</p>
+              <p className="text-xl text-orange-300 font-semibold mb-1">(212) 555-0198</p>
+              <p className="text-gray-400 text-sm">123 Madison Avenue, New York, NY 10016</p>
             </div>
 
             {/* Social Icons */}
@@ -49,13 +50,13 @@ const FooterSection = () => {
 
           {/* Navigation Links */}
           <div className="md:w-1/2">
-            <h3 className="text-lg font-semibold text-orange-300 mb-3">Our Solutions</h3>
+            <h3 className="text-lg font-semibold text-orange-300 mb-3">Our Services</h3>
             <ul className="space-y-2 text-gray-300">
-              <li><a href="/" className="hover:text-orange-300">Home</a></li>
-              <li><a href="/about" className="hover:text-orange-300">About</a></li>
-              <li><a href="/services" className="hover:text-orange-300">Services</a></li>
-              <li><a href="/blog" className="hover:text-orange-300">Blog</a></li>
-              <li><a href="/contact" className="hover:text-orange-300">Contact</a></li>
+              <li><a href="/" className="hover:text-orange-300">Custom Suits</a></li>
+              <li><a href="/about" className="hover:text-orange-300">Bespoke Shirts</a></li>
+              <li><a href="/services" className="hover:text-orange-300">Wedding Attire</a></li>
+              <li><a href="/blog" className="hover:text-orange-300">Alterations</a></li>
+              <li><a href="/contact" className="hover:text-orange-300">Consultations</a></li>
             </ul>
           </div>
         </div>
@@ -63,7 +64,7 @@ const FooterSection = () => {
 
       {/* Footer Bottom */}
       <div className="mt-12 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
-        Copyright ©2025 All rights reserved | This template is made with
+        Copyright ©2025 Tailor House. All rights reserved | Handcrafted with
         <span className="text-red-500 mx-1">❤️</span> by
         <a
           href="https://colorlib.com"

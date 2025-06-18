@@ -6,13 +6,13 @@ import fitting from '../assets/fitting.png';
 const services = [
   {
     id: 1,
-    title: 'Tailor Sweing',
+    title: 'Tailor Sewing',
     description: 'Expert craftsmanship for perfectly fitted garments tailored to your unique measurements and style preferences.',
     image: sewing,
   },
   {
     id: 2,
-    title: 'Mesurement',
+    title: 'Measurement',
     description: 'Professional body measurements to ensure your clothing fits perfectly and flatters your physique.',
     image: measuring,
   },
