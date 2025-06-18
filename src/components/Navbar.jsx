@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const handleNavLinkClick = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  // Function to determine if a link is active
+  const isActive = (path) => {
+    return location.pathname === path;
   };
 
   return (
@@ -16,52 +22,85 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
               <span className="font-bold text-[#8B5E4F] text-3xl tracking-wide hover:scale-105 transition-transform duration-300">
-                Tailor.
+                Tailor
               </span>
             </Link>
           </div>
 
-          {/* Desktop Navigation - All items left-aligned in a row */}
-          <div className="hidden md:flex items-center space-x-0 ml-10">
-            <Link
-              to="/"
-              className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
-            >
-              About
-            </Link>
-            <Link
-              to="/services"
-              className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
-            >
-              Services
-            </Link>
-            <Link
-              to="/blog"
-              className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
-            >
-              Blog
-            </Link>
-            <Link
-              to="/contact"
-              className="py-4 px-4 text-gray-700 font-medium hover:text-[#8B5E4F] transition-all duration-300"
-            >
-              Contact
-            </Link>
-            <Link
-              to="/visit-us"
-              className="py-4 px-4 bg-[#A08474] text-white font-medium hover:bg-[#8B6E61] transition-all duration-300"
-            >
-              VISIT US
-            </Link>
+          {/* Desktop Navigation - Centered with Visit Us on right */}
+          <div className="hidden md:flex items-center flex-1">
+            {/* Centered Navigation Links */}
+            <div className="flex justify-center flex-1">
+              <div className="flex space-x-0">
+                <Link
+                  to="/"
+                  className={`py-4 px-4 font-medium transition-all duration-300 ${
+                    isActive('/')
+                      ? 'text-[#8B5E4F] border-b-2 border-[#8B5E4F]'
+                      : 'text-gray-700 hover:text-[#8B5E4F]'
+                  }`}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/about"
+                  className={`py-4 px-4 font-medium transition-all duration-300 ${
+                    isActive('/about')
+                      ? 'text-[#8B5E4F] border-b-2 border-[#8B5E4F]'
+                      : 'text-gray-700 hover:text-[#8B5E4F]'
+                  }`}
+                >
+                  About
+                </Link>
+                <Link
+                  to="/services"
+                  className={`py-4 px-4 font-medium transition-all duration-300 ${
+                    isActive('/services')
+                      ? 'text-[#8B5E4F] border-b-2 border-[#8B5E4F]'
+                      : 'text-gray-700 hover:text-[#8B5E4F]'
+                  }`}
+                >
+                  Services
+                </Link>
+                <Link
+                  to="/blog"
+                  className={`py-4 px-4 font-medium transition-all duration-300 ${
+                    isActive('/blog')
+                      ? 'text-[#8B5E4F] border-b-2 border-[#8B5E4F]'
+                      : 'text-gray-700 hover:text-[#8B5E4F]'
+                  }`}
+                >
+                  Blog
+                </Link>
+                <Link
+                  to="/contact"
+                  className={`py-4 px-4 font-medium transition-all duration-300 ${
+                    isActive('/contact')
+                      ? 'text-[#8B5E4F] border-b-2 border-[#8B5E4F]'
+                      : 'text-gray-700 hover:text-[#8B5E4F]'
+                  }`}
+                >
+                  Contact
+                </Link>
+              </div>
+            </div>
+
+            {/* Visit Us Button - Right aligned */}
+            <div className="ml-auto">
+              <Link
+                to="/visit-us"
+                className={`py-4 px-4 font-medium transition-all duration-300 ${
+                  isActive('/visit-us')
+                    ? 'bg-[#8B6E61] text-white'
+                    : 'bg-[#A08474] text-white hover:bg-[#8B6E61]'
+                }`}
+              >
+                VISIT US
+              </Link>
+            </div>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button - Right aligned */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -94,42 +133,66 @@ const Navbar = () => {
           <Link
             to="/"
             onClick={handleNavLinkClick}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50 transition duration-300"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition duration-300 ${
+              isActive('/')
+                ? 'text-[#8B5E4F] bg-gray-100'
+                : 'text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50'
+            }`}
           >
             Home
           </Link>
           <Link
             to="/about"
             onClick={handleNavLinkClick}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50 transition duration-300"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition duration-300 ${
+              isActive('/about')
+                ? 'text-[#8B5E4F] bg-gray-100'
+                : 'text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50'
+            }`}
           >
             About
           </Link>
           <Link
             to="/services"
             onClick={handleNavLinkClick}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50 transition duration-300"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition duration-300 ${
+              isActive('/services')
+                ? 'text-[#8B5E4F] bg-gray-100'
+                : 'text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50'
+            }`}
           >
             Services
           </Link>
           <Link
             to="/blog"
             onClick={handleNavLinkClick}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50 transition duration-300"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition duration-300 ${
+              isActive('/blog')
+                ? 'text-[#8B5E4F] bg-gray-100'
+                : 'text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50'
+            }`}
           >
             Blog
           </Link>
           <Link
             to="/contact"
             onClick={handleNavLinkClick}
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50 transition duration-300"
+            className={`block px-3 py-2 rounded-md text-base font-medium transition duration-300 ${
+              isActive('/contact')
+                ? 'text-[#8B5E4F] bg-gray-100'
+                : 'text-gray-700 hover:text-[#8B5E4F] hover:bg-gray-50'
+            }`}
           >
             Contact
           </Link>
           <Link
             to="/visit-us"
             onClick={handleNavLinkClick}
-            className="block px-3 py-2 text-base font-medium text-white bg-[#A08474] hover:bg-[#8B6E61] transition duration-300"
+            className={`block px-3 py-2 text-base font-medium transition duration-300 ${
+              isActive('/visit-us')
+                ? 'bg-[#8B6E61] text-white'
+                : 'bg-[#A08474] text-white hover:bg-[#8B6E61]'
+            }`}
           >
             VISIT US
           </Link>
