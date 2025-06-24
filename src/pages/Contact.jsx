@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { FiMapPin, FiPhone, FiMail, FiClock, FiArrowRight } from "react-icons/fi";
+import { FiMapPin, FiPhone, FiMail, FiClock, FiArrowRight, FiX } from "react-icons/fi";
 import { FaFacebook, FaTwitter, FaInstagram, FaPinterest } from "react-icons/fa";
+import { useState } from "react";
 
 // High-quality images
 const contactHero = "https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80";
@@ -8,8 +9,81 @@ const atelierImage = "https://images.unsplash.com/photo-1598033129183-c4f50c736f
 const mapImage = "https://preview.colorlib.com/theme/tailor/assets/img/gallery/map.png";
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setShowSuccess(true);
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: ""
+      });
+    }, 1500);
+  };
+
   return (
     <div className="font-serif bg-white text-gray-800">
+      {/* Success Modal */}
+      {showSuccess && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-xl max-w-md w-full p-8 relative"
+          >
+            <button 
+              onClick={() => setShowSuccess(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              <FiX className="text-2xl" />
+            </button>
+            
+            <div className="text-center">
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
+              <p className="text-gray-600 mb-6">
+                Your consultation request has been successfully submitted. Our team will contact you within 24 hours.
+              </p>
+              <button
+                onClick={() => setShowSuccess(false)}
+                className="bg-[#caa892] hover:bg-[#b8937a] text-white px-6 py-3 rounded-full font-medium transition-all duration-300"
+              >
+                Close
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
       {/* Hero Section with Parallax */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
@@ -125,12 +199,15 @@ const ContactPage = () => {
                   Begin your bespoke journey by scheduling a consultation with one of our master tailors.
                 </p>
                 
-                <form className="space-y-6">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
                     <input
                       type="text"
                       id="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#caa892] focus:border-transparent"
                       placeholder="Your name"
                     />
@@ -141,6 +218,9 @@ const ContactPage = () => {
                     <input
                       type="email"
                       id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#caa892] focus:border-transparent"
                       placeholder="your@email.com"
                     />
@@ -151,6 +231,8 @@ const ContactPage = () => {
                     <input
                       type="tel"
                       id="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#caa892] focus:border-transparent"
                       placeholder="+39 123 456 7890"
                     />
@@ -160,6 +242,8 @@ const ContactPage = () => {
                     <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">Service Interest</label>
                     <select
                       id="service"
+                      value={formData.service}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#caa892] focus:border-transparent"
                     >
                       <option value="">Select a service</option>
@@ -176,6 +260,8 @@ const ContactPage = () => {
                     <textarea
                       id="message"
                       rows="4"
+                      value={formData.message}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#caa892] focus:border-transparent"
                       placeholder="Tell us about your sartorial needs..."
                     ></textarea>
@@ -185,9 +271,20 @@ const ContactPage = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full bg-[#caa892] hover:bg-[#b8937a] text-white py-4 rounded-lg text-lg font-medium transition-all duration-300"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#caa892] hover:bg-[#b8937a] text-white py-4 rounded-lg text-lg font-medium transition-all duration-300 flex items-center justify-center gap-2"
                   >
-                    Request Consultation
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Processing...
+                      </>
+                    ) : (
+                      "Request Consultation"
+                    )}
                   </motion.button>
                 </form>
               </div>
